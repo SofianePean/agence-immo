@@ -12,8 +12,39 @@
   border: none;
 }
 
+.linkGlobal {
+  cursor: pointer;
+}
+
 .globalColor {
   color: #00695c
+}
+
+.activated {
+  font-weight: bold;
+  background-color: #00695c;
+  pointer-events: none;
+  color: white;
+}
+
+.custom-paginate {
+  display: flex;
+  list-style: none;
+  height: 40px;
+  border: 1px solid #bdbdbd;
+  border-radius: 5px;
+  width: fit-content;
+  align-items: center;
+  padding: 0;
+  margin-top: 40px;
+}
+
+.paginate {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 10px;
+  cursor: pointer;
 }
 
 
@@ -28,5 +59,9 @@
   }
   .carouselMain {
     height: 530px;
+  }
+  .paginateCenter {
+    width: 35%;
+    margin: 0 auto;
   }
 }

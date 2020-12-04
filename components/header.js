@@ -13,7 +13,7 @@ const Header = () => {
             <MDBCollapse id="navbarCollapse" navbar>
                 <MDBNavbarNav left>
                     <MDBNavItem>
-                        <Link href="/" passHref>
+                        <Link href="/" passHref className="linkGlobal">
                             <div className="nav-link">
                             <MDBIcon icon="home" className="mr-1" />Home
                             </div>
