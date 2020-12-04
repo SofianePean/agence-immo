@@ -1,12 +1,37 @@
 import React from 'react';
 import api from 'auth/axios';
-import Layout from 'components/layout'
+import Layout from 'components/layout';
+import CardCarousel from 'components/cardCarousel'
+import {
+    MDBCard,
+    MDBCardBody,
+    MDBContainer,
+    MDBCol,
+    MDBRow
+} from 'mdbreact'
 
 const Property = ({property}) => {
     return(
-        <Layout>
-        {JSON.stringify(property)}
-        </Layout>
+        <>
+        {
+            property && (
+                <Layout>
+                <MDBContainer>
+                    <MDBCard>
+                        <MDBCardBody>
+                            <MDBRow>
+                                <MDBCol md="9" lg="9">
+                                    <CardCarousel property={property}/>
+                                </MDBCol>
+                            </MDBRow>
+                        </MDBCardBody>
+                    </MDBCard>
+                </MDBContainer>
+                </Layout>
+            )
+        }
+        </>
+
     )
 }
 
