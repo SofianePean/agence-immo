@@ -1,16 +1,23 @@
 import React from 'react';
 import api from 'auth/axios';
 import Layout from 'components/layout';
-import CardCarousel from 'components/cardCarousel'
+import CardCarousel from 'components/cardCarousel';
+import CardVip from 'components/cardVip';
+import Slug from 'components/slug';
+import CardRelated from 'components/cardRelated'
 import {
     MDBCard,
     MDBCardBody,
     MDBContainer,
     MDBCol,
-    MDBRow
-} from 'mdbreact'
+    MDBRow,
+    MDBIcon
+} from 'mdbreact';
 
-const Property = ({property}) => {
+const Property = ({property, properties, propertyRelated}) => {
+    const styles = {
+        fontSize: 15
+    }
     return(
         <>
         {
@@ -22,7 +29,40 @@ const Property = ({property}) => {
                             <MDBRow>
                                 <MDBCol md="9" lg="9">
                                     <CardCarousel property={property}/>
+                                    <Slug property={property}/>
                                 </MDBCol>
+                                <MDBCol md="3" lg="3">
+                                    <h4 className="mt-5">Contactez-nous</h4>
+                                    <div style={styles}>
+                                        <MDBIcon icon="calculator" className="mr-1"/>
+                                        10 rue des vainqueurs
+                                    </div>
+                                    <div style={styles}>
+                                        <MDBIcon icon="phone-alt" className="mr-1"/>
+                                        +243 25-522-555
+                                    </div>
+                                    <div style={styles}>
+                                        <MDBIcon icon="mobile-alt" className="mr-1"/>
+                                        +243 25-522-555
+                                    </div>
+                                    <div style={styles}>
+                                        <MDBIcon icon="envelope" className="mr-1"/>
+                                        admin@gmail.com
+                                    </div>
+                                    <h3 className="mt-4 mb-3">Biens sponsorisés</h3>
+                                    <CardVip properties={properties}/>
+                                </MDBCol>
+                            </MDBRow>
+                            <hr className="my-4"/>
+                            <MDBRow>
+                                {
+                                    propertyRelated && propertyRelated.length !== 0 && (
+                                        <MDBCol>
+                                            <h2 className="mb-5">Bien similaire</h2>
+                                            <CardRelated properties={propertyRelated}/>
+                                        </MDBCol>
+                                    )
+                                }
                             </MDBRow>
                         </MDBCardBody>
                     </MDBCard>
@@ -48,10 +88,14 @@ export const getStaticPaths = async() => {
 export const getStaticProps = async({params}) => {
     const {slug} = params;
     const {data: property} = await api.get(`/api/property/${slug}`)
+    const {data: properties} = await api.get("/api/properties/vip")
+    const {data: propertyRelated} = await api.get(`/api/properties/related/${property._id}`)
 
     return {
         props : {
-            property
+            property,
+            properties,
+            propertyRelated
         }
     }
 }

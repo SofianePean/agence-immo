@@ -12,7 +12,6 @@ MDBView
 import { priceFormatted } from './helpers'
 
 const PropertyVip = ({properties}) => {
-    console.log(properties)
     return(
         <>
         <h2 className="h2-responsive font-weight-bold text-center my-4 globalColor">Biens sponsorisés</h2>

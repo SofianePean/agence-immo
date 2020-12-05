@@ -8,18 +8,21 @@ const Card = ({properties}) => {
     <>
     {
       properties && properties.map(property => (
-        <MDBCard>
+        <MDBCard key={property._id}>
       <MDBCardBody>
         <MDBRow>
           <MDBCol lg="5">
-          <Link href="/property/[slug]" as={`/property/${property.slug}`} passHref>
-            <MDBView className="rounded z-depth-2 mb-lg-0 mb-4" hover waves>
+          <Link href="/property/[slug]" as={`/property/${property.slug}`}>
+          <a href="">
+          <MDBView className="rounded z-depth-2 mb-lg-0 mb-4" hover waves>
               <img
                 className="globalImg"
                 src={property.pictures[0]}
                 alt=""
               />
             </MDBView>
+          </a>
+
           </Link>
           </MDBCol>
           <MDBCol lg="7">
